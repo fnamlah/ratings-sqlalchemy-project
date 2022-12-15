@@ -1,0 +1,44 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}Restaurants{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <h1>All Cafes</h1>
+
+	  <table class="table">
+		  <tr>
+			<th>Cafe Name</th>
+			<th>Location</th>
+			<th>Opening Time</th>
+			<th>Closing Time</th>
+			<th>Cafe Rating</th>
+			<th>Wifi Rating</th>
+			<th>Power Socket Rating</th>
+			<th>❌</th>
+		  </tr>
+	  {% for item in cafes %}
+	  <tr>
+				<td>{{ item.name }}</td>
+		  		<td><a href="{{ item.location }}">Maps Link</a></td>
+		  		<td>{{ item.open }}</td>
+		  		<td>{{ item.close }}</td>
+		  		<td>{{ item.rating }}</td>
+		  		<td>{{ item.wifi }}</td>
+		  		<td>{{ item.power }}</td>
+          <td><a href="{{ url_for('delete', id=item.id) }}"><button>Deleted</button></a></td>
+	  </tr>
+	  {% endfor %}
+  	  </table>
+      <p><a href="{{url_for('home')}}">Return to index page</a></p>
+
+    </div>
+  </div>
+	<p><a href="{{url_for('add_cafe')}}">Add</a></p>
+</div>
+
+{% endblock %}
